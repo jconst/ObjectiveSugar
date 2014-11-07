@@ -254,5 +254,7 @@
  **/
 - (NSArray *)unique;
 
+- (NSDictionary *)groupBy:(id (^)(id item))block;
+
 @end
 

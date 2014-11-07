@@ -185,6 +185,21 @@ static NSString * const OSMinusString = @"-";
   return [[NSOrderedSet orderedSetWithArray:self] array];
 }
 
+- (NSDictionary *)groupBy:(id (^)(id item))block
+{
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    for (id item in self) {
+        id key = block(item);
+        NSMutableArray *group = [result objectForKey:key];
+        if (!group) {
+            group = [NSMutableArray array];
+            [result setObject:group forKey:key];
+        }
+        [group addObject:item];
+    }
+    return result;
+}
+
 #pragma mark - Set operations
 
 - (NSArray *)intersectionWithArray:(NSArray *)array {
