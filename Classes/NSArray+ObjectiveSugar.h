@@ -195,6 +195,13 @@
 - (NSArray *)sortBy:(NSString *)key;
 
 /**
+ Sorts the array using an ascending or descending comparator on the given key
+ 
+ @return A sorted copy of the array
+ */
+- (NSArray *)sortBy:(NSString*)key ascending:(BOOL)ascending;
+
+/**
  Alias for reverseObjectEnumerator.allObjects
 
  Returns a reversed array

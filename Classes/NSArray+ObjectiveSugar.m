@@ -158,8 +158,12 @@ static NSString * const OSMinusString = @"-";
     return [self sortedArrayUsingSelector:@selector(compare:)];
 }
 
-- (NSArray *)sortBy:(NSString*)key; {
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+- (NSArray *)sortBy:(NSString*)key {
+    return [self sortBy:key ascending:YES];
+}
+
+- (NSArray *)sortBy:(NSString*)key ascending:(BOOL)ascending {
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:ascending];
     return [self sortedArrayUsingDescriptors:@[descriptor]];
 }
 
