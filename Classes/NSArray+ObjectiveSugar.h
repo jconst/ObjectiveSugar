@@ -263,5 +263,11 @@
 
 - (NSDictionary *)groupBy:(id (^)(id item))block;
 
+-(id)max:(NSComparisonResult (^)(id obj, id otherObj))aBlock;
+
+-(id)min:(NSComparisonResult (^)(id obj, id otherObj))aBlock;
+
+- (NSArray *)filter:(BOOL (^)(id object))block;
+
 @end
 

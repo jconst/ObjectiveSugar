@@ -204,6 +204,20 @@ static NSString * const OSMinusString = @"-";
     return result;
 }
 
+-(id)max:(NSComparisonResult (^)(id obj, id otherObj))aBlock
+{
+    return [self reduce:[self firstObject] withBlock:^id(id max, id obj) {
+        return aBlock(max,obj) == NSOrderedAscending ? obj : max;
+    }];
+}
+
+-(id)min:(NSComparisonResult (^)(id obj, id otherObj))aBlock
+{
+    return [self reduce:[self firstObject] withBlock:^id(id max, id obj) {
+        return aBlock(max,obj) == NSOrderedDescending ? obj : max;
+    }];
+}
+
 #pragma mark - Set operations
 
 - (NSArray *)intersectionWithArray:(NSArray *)array {
@@ -234,6 +248,11 @@ static inline BOOL isBackwardsRange(NSString *rangeString) {
 }
 
 #pragma mark - Aliases
+
+- (NSArray *)filter:(BOOL (^)(id object))block
+{
+    return [self select:block];
+}
 
 - (id)anyObject {
     return [self sample];
