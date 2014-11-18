@@ -254,6 +254,8 @@
  **/
 - (id)reduce:(id)initial withBlock:(id (^)(id accumulator, id object))block;
 
+- (id)reducePairs:(id)initial withBlock:(id (^)(id accumulator, id obj1, id obj2))block;
+
 /**
  Produces a duplicate-free version of the array
  

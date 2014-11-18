@@ -184,6 +184,18 @@ static NSString * const OSMinusString = @"-";
 	return accumulator;
 }
 
+- (id)reducePairs:(id)initial withBlock:(id (^)(id accumulator, id obj1, id obj2))block {
+    id accumulator = initial;
+    
+    for (int i = 0; i < self.count - 1; i++) {
+        id obj1 = self[i];
+        id obj2 = self[i+1];
+        accumulator = accumulator ? block(accumulator, obj1, obj2) : obj1;
+    }
+    
+    return accumulator;
+}
+
 - (NSArray *)unique
 {
   return [[NSOrderedSet orderedSetWithArray:self] array];
